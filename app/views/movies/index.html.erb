@@ -1,8 +1,8 @@
 <h1>Movies</h1>
 
-
-<% @movies.each do |movie| %>
-<p>
-<% link_to movie.title  %>
-</p>
-<% end %>	
+<ol>
+  <% @movies.each do |movie| %>
+    <li><%= link_to movie.title, movie %></li>
+  <% end %>
+</ol>
+	

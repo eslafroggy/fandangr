@@ -1,2 +1,26 @@
-<h1>Showtimes#show</h1>
-<p>Find me in app/views/showtimes/show.html.erb</p>
+<h1>Seats for "<%= @showtime.movie.title %>" at <%= @showtime.time %></h1>
+
+<table class="table" data-movie-id="<%= @showtime.movie.id %>" data-showtime-id="<%= @showtime.id %>">
+  <tr>
+    <th></th>
+    <th>Seat 1</th>
+    <th>Seat 2</th>
+    <th>Seat 3</th>
+    <th>Seat 4</th>
+    <th>Seat 5</th>
+  </tr>
+  <% @showtime.seats.each do |seat| %>
+    <% if seat.seat_number == 1 %>
+      <tr>
+        <th>Row <%= seat.row %></th>
+    <% end %>
+      <% if seat.purchased? %>
+        <td class="error" data-row="<%= seat.row %>" data-seat-number="<%= seat.seat_number %>">Purchased</td>
+      <% else %>
+        <td class="success" data-row="<%= seat.row %>" data-seat-number="<%= seat.seat_number %>">Available</td>
+      <% end %>
+    <% if seat.seat_number == 5 %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

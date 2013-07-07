@@ -11,3 +11,10 @@
  *= require_self
  *= require_tree .
  */
+td.success {
+  background: #dff0d8;
+}
+
+td.error {
+  background: #f2dede;
+}

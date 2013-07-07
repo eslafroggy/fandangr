@@ -12,7 +12,19 @@ gem 'pg'
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  # gem 'coffee-rails', '~> 3.2.1'
+  
+  group :development, :test do
+    gem 'rspec-rails', '~> 2.0'
+
+  end
+   
+  group :development do
+    gem "better_errors"
+    gem 'pry-rails'
+    gem 'pry-debugger'
+    gem 'binding_of_caller'
+  end
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

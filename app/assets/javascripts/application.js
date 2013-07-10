@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
 $(function () {
   $("td").on("click", function (event) {
     var table, movieID, showtimeID, seat, seatRow, seatNumber;
@@ -26,14 +27,16 @@ $(function () {
     table = seat.closest("table");
     movieID = table.data("movie-id");
     showtimeID = table.data("showtime-id");
+		if(seat.attr("class") == "error"){
+			alert("ticket already purchased")
+			return false; 
+		}
 
     jqXHR = $.post("/movies/" + movieID + "/showtimes/" + showtimeID + "/purchase", {
       row: seatRow,
       "seat_number": seatNumber
     }).done(function () {
       seat.attr("class", "error").text("Purchased");
-    }).fail(function () {
-      alert("Seat cannot be purchased.");
-    });
+    })
   });
 });

@@ -23,22 +23,22 @@ describe Showtime do
      let(:movie) { Movie.create(title: "Debbie Does Dallas") }
      subject {described_class.create!( time: Time.now, movie: movie)}
      let(:seat) {subject.seats.create!(row: 1, seat_number: 1)}
-     let(:user) {User.create!(email: "buttsexx@buttsexx.com")}
+     let(:user) {User.create!(email: "mock_user@mockuser.com")}
     it "sells the user a seat if it's available" do
-      seat
-      purchased_seat = subject.purchase_seat(1, 1, user)
-      expect(purchased_seat.user).to eql(user)       
+     seat
+     purchased_seat = subject.purchase_seat(1, 1, user)
+     expect(purchased_seat.user).to eql(user)       
     end
     it "raises seat not found if there is no such seat" do
       expect {subject.purchase_seat(1, 1, user)}.to raise_error(
-        Showtime::SeatNotFound
+      Showtime::SeatNotFound
       )
     end
     it "raises seat already purchased if seat is not available" do
       seat
       subject.purchase_seat(1, 1, user)
       expect { subject.purchase_seat(1, 1, user)}.to raise_error(
-        Showtime::SeatAlreadyPurchased
+      Showtime::SeatAlreadyPurchased
       )
     end
   end
